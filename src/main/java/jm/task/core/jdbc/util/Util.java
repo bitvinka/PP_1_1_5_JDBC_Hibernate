@@ -14,31 +14,19 @@ import java.util.Properties;
 //класс для подключения базы данных
 public class Util {
 //JDBC********************************************
-    public static Connection getConnection() {
+        public static final String DB_URL = "jdbc:mysql://localhost:3306/";
+        public static final String DB_USER_NAME = "root";
+        public static final String DB_PASSWORD = "";
 
-        String dbURL = null;
-        String dbUsername = null;
-        String dbPassword = null;
-
-        Properties properties = new Properties();
-        try (FileInputStream fileInputStream = new FileInputStream("src/main/resources/database.properties")) {
-            properties.load(fileInputStream);
-            dbURL = properties.getProperty("url");
-            dbUsername = properties.getProperty("username");
-            dbPassword = properties.getProperty("password");
-        } catch (IOException e) {
-            e.printStackTrace();
+        public static Connection getConnection() {
+            Connection connection = null;
+            try {
+                connection = DriverManager.getConnection(DB_URL, DB_USER_NAME, DB_PASSWORD);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return connection;
         }
-
-        Connection connection = null;
-        try {
-            assert dbURL != null;
-            connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return connection;
-    }
 
 //Hibernate ********************************************
 
