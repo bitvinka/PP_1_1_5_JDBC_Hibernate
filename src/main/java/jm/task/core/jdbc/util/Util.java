@@ -4,12 +4,10 @@ import jm.task.core.jdbc.model.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
+
 
 //класс для подключения базы данных
 public class Util {
@@ -32,8 +30,7 @@ public class Util {
 
     public static SessionFactory getSessionFactory() {
         Configuration configuration = new Configuration().addAnnotatedClass(User.class);
-        SessionFactory sessionFactory = configuration.buildSessionFactory();
-        return sessionFactory;
+        return configuration.buildSessionFactory();
     }
 
 }
