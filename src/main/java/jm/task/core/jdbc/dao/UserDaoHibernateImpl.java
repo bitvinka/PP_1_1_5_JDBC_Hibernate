@@ -13,7 +13,6 @@ public class UserDaoHibernateImpl implements UserDao {
     private Transaction transaction;
 
     public UserDaoHibernateImpl() {
-
     }
 
 
